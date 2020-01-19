@@ -1,0 +1,182 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Titillium Web;
+}
+
+header{
+    background: linear-gradient(#233341, #34495e);
+    height: 100vh;
+    color: #fff;
+}
+
+ul{
+    float: right;
+    list-style-type: none;
+    margin-top: 35px;
+    margin-right: 20px;
+}
+
+ul li{
+    display: inline-block;
+}
+
+ul li a{
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 30px;
+    border: 1.5px solid #fff;
+    transition: 0.6s ease;
+}
+
+ul li a:hover{
+    background-color: #7f8c8d;
+}
+
+ul li.active a{
+    background-color: #233341;
+    color: #fff;  
+}
+
+
+.logo img{
+    width: 250px;
+    height: auto;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title{
+    position: absolute;
+    top: 1%;
+    left: 1%;
+}
+
+.title h1{
+    color: #fff;
+    font-size: 50px;
+}
+
+.button{
+    position: absolute;
+    top: 63%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn{
+    border: 5px solid #233341;
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.6s ease;
+}
+
+.btn:hover{
+    background-color: #233341;
+    color: #ecf0f1;
+}
+
+.info{
+    background: #ecf0f1;
+    height: 20vh;
+    color: #233341;
+}
+
+.info h1{
+    position:relative;
+    font-size: 45px;
+    top: 5%;
+}
+
+.info h3{
+    position:relative;
+    font-weight: 20;
+    font-size: 20px;
+    top: 18%
+}
+
+.install{
+    background: #2c3e50;
+    height: 50vh;
+    color: #ecf0f1;
+}
+
+.install h1{
+    position: relative;
+    font-size: 45px;
+    top: 5%;
+}
+
+.install h3{
+    position: relative;
+    font-weight: 20;
+    font-size: 15px;
+    top: 8%;
+}
+
+.staff_body{
+    margin: 0;
+    padding: 0;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #C8C8C8;
+}
+
+.staff_body .containerStaff{
+    position: relative;
+    display: flex;
+    width: 800px;
+    justify-content: space-between;
+}
+
+.staff_body .containerStaff .cardStaff{
+    position: relative;
+    width: 280px;
+    height: 300px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    background: #fff;
+    transform: scale(1);
+    transition: 0.6s;
+    border-radius: 4px;
+    padding-top: 10;
+}
+
+.staff_body .containerStaff .cardStaff .StaffContent{
+    position: relative;
+    text-align: center;
+    top: 10px;
+}
+
+.staff_body .containerStaff .cardStaff:hover {
+    transform: scale(1.1);
+}
+
+.staff_body .containerStaff .cardStaff .StaffContent h2{
+    color: #3B3B3B;
+}
+
+.staff_body .containerStaff .cardStaff .StaffContent h3{
+    color: #A0A0A0;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #7f8c8d;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background: #2c3e50; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #151E27; 
+}
