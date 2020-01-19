@@ -1,0 +1,93 @@
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>GNLib</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body>
+		<header>
+			<div class="main">
+				<ul>
+					<li><a href="index.html">Accueil</a></li>
+					<li><a href="wiki.html">Wiki</a></li>
+					<li><a onclick="window.location.href = 'https://discord.gg/U425mC';">Discord</a></li>
+				</ul>
+
+				<div class="title">
+					<h1>GNLib</h1>
+				</div>	
+			</div>
+
+			<div class="logo">
+				<a><center><img src="gnlib_logo.png"></center></a>
+			</div>
+
+
+			<div class="button">
+				<a href="wiki.html" class="btn">VOIR LE WIKI</a>	
+			</div>
+		</header>
+
+		<div class="info">
+			<h1><center>QU'EST CE QUE GNLib ?</center></h1>
+
+			<h3><center>GNLib est une librarie créée par Guthen et Nogitsu.</center></h3>
+		</div>
+
+		<div class="install">
+			<h1><center>COMMENT INSTALLER GNLib ?</center></h1>
+
+			<h3><center>- Téléchargement direct sur GitHub de la dernière version de GNLib, puis extraction du<br /> dossier compressé obtenu vers le dossier addons de votre serveur ou jeu.<br />Bien que simpliste, cette technique est moins recommandée si vous souhaitez installer les mises à jour de <br />la librairie rapidement puisqu’il faudra répéter les étapes à chaque mise à jour.
+			</center></h3>
+			<BR>
+			<h3><center>- Installation sur le logiciel GitHub Desktop de GNLib dans le dossier addons.<br />Cette solution est plus pratique si vous souhaitez installer les dernières mises à jour rapidement.
+			</center></h3>
+			<BR>
+			<h3><center>- Téléchargement sur le Steam Workshop de GNLib, mais cette manière est plutôt<br />déconseillée parce que la librairie est souvent non mise à jour.
+			</center></h3>
+		</div>
+
+		<div class="admin-text">
+			<h1><center>CRÉATEURS</center></h1>
+		</div>
+
+		<div class="staff_body">
+			<div class="containerStaff">
+				<div class="cardStaff">
+					<div class="StaffContent">
+						<img src="guthe.png">
+						<h2>Guthen</h2>
+						<h3>Lead Dev</h3>
+					</div>
+				</div>
+				<div class="cardStaff">
+					<div class="StaffContent">
+						<img src="Nogitsu.png">
+						<h2>Nogitsu</h2>
+						<h3>Lead Dev</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+		function myFunction() {
+			var input, filter, ul, li, a, i;
+			input = document.getElementById("mySearch");
+			filter = input.value.toUpperCase();
+			ul = document.getElementById("vertical-menu");
+			li = ul.getElementsByTagName("a");
+			for (i = 0; i < li.length; i++) {
+				a = li[i].getElementsByTagName("a")[0];
+				if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+					li[i].style.display = "";
+				} else {
+				li[i].style.display = "none";
+				}
+			}
+		}
+		</script>
+	</body>
+</html>
