@@ -1,0 +1,151 @@
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>GNLib - Wiki</title>
+		<link rel="stylesheet" type="text/css" href="css/wiki.css">
+	</head>
+	<body>
+		<header>
+			<div class="main">
+				<div class="logo">
+					<a href="index.html"><img src="gnlib.png"></a> 
+				</div>
+				<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Rechercher..." title="Type in a category">
+				<div class="vertical-menu">
+					<ul id="myMenu">
+						<div class="categorie"><h1>VGUI</h1></div>
+						<li><a href="#">GN Frame</a></li>
+						<li><a href="#">GN Button</a></li>
+						<li><a href="#">GN Carousel</a></li>
+						<li><a href="#">GN Color Picker</a></li>
+						<li><a href="#">GN Combo Box</a></li>
+						<li><a href="#">GN Group Box</a></li>
+						<li><a href="#">GN Icon Button</a></li>
+						<li><a href="#">GN Image</a></li>
+						<li><a href="#">GN Label</a></li>
+						<li><a href="#">GN Num Entry</a></li>
+						<li><a href="#">GN Panel</a></li>
+						<li><a href="#">GN Progress</a></li>
+						<li><a href="#">GN Slider</a></li>
+						<li><a href="#">GN Tag</a></li>
+						<li><a href="#">GN Tag List</a></li>
+						<li><a href="#">GN Text Entry</a></li>
+						<li><a href="#">GN Toogle Button</a></li>
+						<li><a href="#">GN Tool Tip</a></li>
+						<div class="categorie"><h1>DRAW</h1></div>
+						<li><a href="#">GNLib.DrawRectGradient</a></li>
+						<li><a href="#">GNLib.DrawRadialGradient</a></li>
+						<li><a href="#">GNLib.DrawTriangle</a></li>
+						<li><a href="#">GNLib.DrawTriangleRectangle</a></li>
+						<li><a href="#">GNLib.DrawStencil</a></li>
+						<li><a href="#">GNLib.DrawMaterial</a></li>
+						<li><a href="#">GNLib.SimpleTextShadowed</a></li>
+						<li><a href="#">GNLib.DrawShadowedIcon</a></li>
+						<li><a href="#">GNLib.DrawIconText</a></li>
+						<li><a href="#">GNLib.DrawIconTextOutlined</a></li>
+						<li><a href="#">GNLib.DrawIconTextShadowed</a></li>
+						<li><a href="#">GNLib.DrawCircle</a></li>
+						<li><a href="#">GNLib.DrawElipse</a></li>
+						<li><a href="#">GNLib.DrawShearedRect</a></li>
+						<li><a href="#">GNLib.DrawRightShearedRect</a></li>
+						<li><a href="#">GNLib.DrawLeftShearedRect</a></li>
+						<li><a href="#">GNLib.DrawShearedElipse</a></li>
+						<li><a href="#">GNLib.DrawOutlinedBox</a></li>
+						<li><a href="#">GNLib.DrawOutlinedCircle</a></li>
+						<li><a href="#">GNLib.DrawLine</a></li>
+						<li><a href="#">GNLib.DrawOutlinedElipse</a></li>
+						<li><a href="#">GNLib.DrawOutlinedRoundedRect</a></li>
+						<li><a href="#">GNLib.DrawRoundedRect</a></li>
+						<li><a href="#">GNLib.DrawBlur</a></li>
+						<li><a href="#">GNLib.DrawBlurCircle</a></li>
+						<li><a href="#">GNLib.DrawRotated</a></li>
+						<li><a href="#">GNLib.DrawRectRotated</a></li>
+						<li><a href="#">GNLib.CircleGraph</a></li>
+						<li><a href="#">GNLib.OutlinedCircleGraph</a></li>
+						<li><a href="#">GNLib.BarGraph</a></li>
+						<li><a href="#">GNLib.Curve</a></li>
+						<li><a href="#">GNLib.DrawFunc</a></li>
+						<li><a href="#">GNLib.DrawLines</a></li>
+						<li><a href="#">GNLib.GradientText</a></li>
+						<li><a href="#">GNLib.GradientTextOutlined</a></li>
+						<div class="categorie"><h1>COLORS</h1></div>
+						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="right">
+			    <h1 class="title"><center>GNLib.DrawRadialGradient</center></h1>
+			    
+			    <div class="function">
+			    	<h2><center>GNLib.DrawRectGradient( x, y, w, h, color1, color2, vertical )</center></h2>
+			    </div>
+
+			    <div class="desc">
+			    	<h2>DESCRIPTION :</h2>
+			    	<p>Fonction permettant de dessiner un rectangle avec un dégradé vertical ou horizontal de deux couleurs.</p>
+			    </div>
+
+			    <div class="arg">
+			    	<h2>ARGUMENTS :</h2>
+			    	<p>• number x : Position en x<br />
+						• number y : Position en y<br />
+						• number w : Largeur du dégradé<br />
+						• number h : Hauteur du dégradé<br />
+						• Color color1 : Première couleur du dégradé<br />
+						• Color color2 : Seconde couleur du dégradé<br />
+						• boolean vertical=false : Si oui ou non le dégradé est horizontal ou vertical
+					</p>
+			    </div>
+
+			    <dir class="exp">
+			    	<h2>EXEMPLE :</h2>
+			    	<div class="code">
+				    	<pre>
+hook.Add( "HUDPaint", "GNLib:DrawRectGradient", function()
+    GNLib.DrawRectGradient( 10, ScrH() - 50, 100, 40, GNLib.Colors.Clouds, GNLib.Colors.Amethyst )
+end )
+						</pre>
+					</div>
+			    </dir>
+
+			    <div class="output">
+			    	<h2>SORTIE :</h2>
+
+			    	<img src="output.png">
+			    </div>
+			</div>
+		</header>
+
+	<script>
+		function myFunction() {
+			var input, filter, ul, li, a, i;
+			input = document.getElementById("mySearch");
+			filter = input.value.toUpperCase();
+			ul = document.getElementById("myMenu");
+			li = ul.getElementsByTagName("li");
+			for (i = 0; i < li.length; i++) {
+				a = li[i].getElementsByTagName("a")[0];
+				if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+					li[i].style.display = "";
+				} else {
+				li[i].style.display = "none";
+				}
+			}
+		}
+	</script>
+	</body>
+</html>
