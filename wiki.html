@@ -29,8 +29,15 @@
 								{{ text }}
 							</a>
 						</li>
+						<!-- DRAW functions -->
+						<div class="categorie"><h1>DRAW</h1></div>
+						<li v-for="text in draw">
+							<a href="#">
+								{{ text }}
+							</a>
+						</li>
 						<!-- COLOR variables -->
-						<div class="categorie"><h1>COLOR</h1></div>
+						<div class="categorie"><h1>COLORS</h1></div>
 						<li v-for="el in color">
 							<a href="#" v-bind:style="{ backgroundColor: el.color }">
 								{{ el.name }}

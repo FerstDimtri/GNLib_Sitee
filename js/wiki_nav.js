@@ -23,6 +23,20 @@ function get_content( link ) {
     } )
 }
 
+function fetch_documentation_name( link, array ) {
+    get_content( link )
+        .then( response => {
+            var lines = response.split( "\n" )
+            for ( let i = 0; i < lines.length; i++ ) {
+                const v = lines[i]
+                if ( v.includes( "@title:" ) ) {
+                    let name = lines[i + 1].match( /\w+.\w+/i )[0] // get next line and get the function name
+                    array.push( name )
+                }
+            } 
+        } )
+}
+
 function component_to_hex( c ) {
     var hex = Number( c ).toString( 16 );
     return hex.length == 1 ? "0" + hex : hex;
@@ -37,6 +51,7 @@ var vertical_menu = new Vue( {
     data: {
         vgui: [],
         util: [],
+        draw: [],
         color: [],
     },
     created() {
@@ -50,17 +65,10 @@ var vertical_menu = new Vue( {
             } )
             
         /* UTIL */
-        get_content( raw_link + "lua/gnlib/shared/sh_util.lua" )
-            .then( response => {
-                var lines = response.split( "\n" )
-                for ( let i = 0; i < lines.length; i++ ) {
-                    const v = lines[i]
-                    if ( v.includes( "@title:" ) ) {
-                        let name = lines[i + 1].match( /\w+.\w+/i )[0] // get next line and get the function name
-                        this.util.push( name )
-                    }
-                } 
-            } )
+        fetch_documentation_name( raw_link + "lua/gnlib/shared/sh_util.lua", this.util )
+
+        /* DRAW */
+        fetch_documentation_name( raw_link + "lua/gnlib/client/cl_draw.lua", this.draw )
 
         /* COLOR */
         get_content( raw_link + "lua/gnlib/shared/sh_colors.lua" )
