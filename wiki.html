@@ -15,7 +15,20 @@
 				<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Rechercher..." title="Type in a category">
 				<div class="vertical-menu">
 					<ul id="myMenu">
+						<!-- VGUI's -->
 						<div class="categorie"><h1>VGUI</h1></div>
+						<li v-for="text in vgui">
+							<a href="#">
+								{{ text }}
+							</a>
+						</li>
+						<div class="categorie"><h1>UTIL</h1></div>
+						<li v-for="text in util">
+							<a href="#">
+								{{ text }}
+							</a>
+						</li>
+						<!-- <div class="categorie"><h1>VGUI</h1></div>
 						<li><a href="#">GN Frame</a></li>
 						<li><a href="#">GN Button</a></li>
 						<li><a href="#">GN Carousel</a></li>
@@ -83,7 +96,7 @@
 						<li><a href="#">Link</a></li>
 						<li><a href="#">Link</a></li>
 						<li><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
+						<li><a href="#">Link</a></li> -->
 					</ul>
 				</div>
 			</div>
@@ -106,5 +119,7 @@
 				}
 			}
 		</script>
+		<script src="https://unpkg.com/vue"></script>
+		<script src="js/wiki_nav.js"></script>
 	</body>
 </html>
