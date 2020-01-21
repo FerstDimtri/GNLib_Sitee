@@ -9,11 +9,35 @@ function fetch_json( link ) {
     } )
 }
 
-var main = new Vue( {
+function get_content( link ) {
+    return new Promise( ( res, rej ) => {
+        var xhr = new XMLHttpRequest()
+        xhr.open( "GET", link ) 
+        xhr.onload = () => {
+            res( xhr.responseText )
+        }
+        xhr.onerror = () => {
+            rej()
+        }
+        xhr.send()
+    } )
+}
+
+function component_to_hex( c ) {
+    var hex = Number( c ).toString( 16 );
+    return hex.length == 1 ? "0" + hex : hex;
+}
+  
+function rgb_to_hex( r, g, b ) {
+    return "#" + component_to_hex( r ) + component_to_hex( g ) + component_to_hex( b );
+}
+
+var vertical_menu = new Vue( {
     el: ".vertical-menu",
     data: {
         vgui: [],
         util: [],
+        color: [],
     },
     created() {
         /* VGUI */
@@ -26,14 +50,35 @@ var main = new Vue( {
             } )
             
         /* UTIL */
-        var xhr = new XMLHttpRequest()
-        xhr.open( "GET", raw_link + "lua/gnlib/shared/sh_util.lua" ) 
-        xhr.onload = () => {
-            var lines = xhr.responseText.split( "\n" )
-            lines.forEach( v => {
-                //  > TODO: read each documentation like in GNLib.MakeDocumentation
+        get_content( raw_link + "lua/gnlib/shared/sh_util.lua" )
+            .then( response => {
+                var lines = response.split( "\n" )
+                for ( let i = 0; i < lines.length; i++ ) {
+                    const v = lines[i]
+                    if ( v.includes( "@title:" ) ) {
+                        let name = lines[i + 1].match( /\w+.\w+/i )[0] // get next line and get the function name
+                        this.util.push( name )
+                    }
+                } 
             } )
-        }
-        xhr.send()
+
+        /* COLOR */
+        get_content( raw_link + "lua/gnlib/shared/sh_colors.lua" )
+            .then( response => {
+                var lines = response.split( "\n" )
+                for ( let i = 0; i < lines.length; i++ ) {
+                    const v = lines[i]
+                    if ( v.includes( "GNLib.Colors." ) ) {
+                        let name = v.match( /GNLib.Colors.\w+/i )[0]
+                        let color = v.match( /\d+, \d+, \d+/i )[0].split( ", " )
+                            console.log( color[0], color[1], color[2]);
+                            color = rgb_to_hex( color[0], color[1], color[2] )
+                            console.log(color);
+                            
+                        
+                        this.color.push( { name: name, color: color } )
+                    }
+                }
+            } )
     }
 } ) 
