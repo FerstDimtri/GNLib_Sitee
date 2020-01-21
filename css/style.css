@@ -134,7 +134,7 @@ ul li.active a{
 .staff_body .containerStaff{
     position: relative;
     display: flex;
-    width: 700px;
+    width: 900px;
     justify-content: space-between;
 }
 
