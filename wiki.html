@@ -12,34 +12,34 @@
 				<div class="logo">
 					<a href="index.html"><center><img src="img/gnlib.png"></center></a> 
 				</div>
-				<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Rechercher..." title="Type in a category">
 				<div class="vertical-menu">
+					<input v-model="search" id="mySearch" placeholder="Rechercher..." title="Search a function, variable or VGUI">
 					<ul id="myMenu">
 						<!-- VGUIs -->
 						<div class="categorie"><h1>VGUI</h1></div>
 						<li v-for="text in vgui">
-							<a href="#">
+							<a href="#" v-if="text.toLowerCase().indexOf( search ) > -1">
 								{{ text }}
 							</a>
 						</li>
 						<!-- UTIL functions -->
 						<div class="categorie"><h1>UTIL</h1></div>
 						<li v-for="text in util">
-							<a href="#">
+							<a href="#" v-if="text.toLowerCase().indexOf( search ) > -1">
 								{{ text }}
 							</a>
 						</li>
 						<!-- DRAW functions -->
 						<div class="categorie"><h1>DRAW</h1></div>
 						<li v-for="text in draw">
-							<a href="#">
+							<a href="#" v-if="text.toLowerCase().indexOf( search ) > -1">
 								{{ text }}
 							</a>
 						</li>
 						<!-- COLOR variables -->
 						<div class="categorie"><h1>COLORS</h1></div>
 						<li v-for="el in color">
-							<a href="#" v-bind:style="{ backgroundColor: el.color }">
+							<a href="#" v-if="el.name.toLowerCase().indexOf( search ) > -1" v-bind:style="{ backgroundColor: el.color }">
 								{{ el.name }}
 							</a>
 						</li>
@@ -48,23 +48,6 @@
 			</div>
 		</header>
 
-		<script>
-			function myFunction() {
-				var input, filter, ul, li, a, i;
-				input = document.getElementById("mySearch");
-				filter = input.value.toUpperCase();
-				ul = document.getElementById("myMenu");
-				li = ul.getElementsByTagName("li");
-				for (i = 0; i < li.length; i++) {
-					a = li[i].getElementsByTagName("a")[0];
-					if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-						li[i].style.display = "";
-					} else {
-					li[i].style.display = "none";
-					}
-				}
-			}
-		</script>
 		<script src="https://unpkg.com/vue"></script>
 		<script src="js/wiki_nav.js"></script>
 	</body>

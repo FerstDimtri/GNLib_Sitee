@@ -49,6 +49,7 @@ function rgb_to_hex( r, g, b ) {
 var vertical_menu = new Vue( {
     el: ".vertical-menu",
     data: {
+        search: "",
         vgui: [],
         util: [],
         draw: [],
@@ -79,10 +80,7 @@ var vertical_menu = new Vue( {
                     if ( v.includes( "GNLib.Colors." ) ) {
                         let name = v.match( /GNLib.Colors.\w+/i )[0]
                         let color = v.match( /\d+, \d+, \d+/i )[0].split( ", " )
-                            console.log( color[0], color[1], color[2]);
-                            color = rgb_to_hex( color[0], color[1], color[2] )
-                            console.log(color);
-                            
+                            color = rgb_to_hex( color[0], color[1], color[2] )                            
                         
                         this.color.push( { name: name, color: color } )
                     }
