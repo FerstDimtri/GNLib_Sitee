@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Créateur de doc</title>
+    </head>
+    <body>
+        <div class="docmaker">
+            <h3>Titre</h3>
+            <input v-model="args.title">
+
+            <h3>Note</h3>
+            <input v-model="args.note">
+
+            <h3>Output</h3>
+            <textarea style="border-style: none;" cols=80 rows=5>
+                {{ getOutput }}
+            </textarea>
+        </div>
+
+        <script src="https://unpkg.com/vue"></script>
+        <script src="js/doc_maker.js"></script>
+    </body>
+</html>
