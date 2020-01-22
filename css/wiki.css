@@ -24,8 +24,10 @@ header{
 }
 
 .main .logo img{
-	width: 240px;
+	width: 30vh;
     height: auto;
+    margin-top: 5vh;
+  	transform: translateY(-50%)
 }
 
 .vertical-menu {
