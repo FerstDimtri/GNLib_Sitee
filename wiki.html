@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>GNLib - Wiki</title>
 		<link rel="stylesheet" type="text/css" href="css/wiki.css">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	</head>
 	<body>
 		<header>
@@ -18,28 +19,29 @@
 						<!-- VGUIs -->
 						<div class="categorie"><h1>VGUI</h1></div>
 						<li v-for="text in vgui">
-							<a href="#" v-if="text.toLowerCase().indexOf( search ) > -1">
+							<a :href="'?file=' + links.vgui + text.toLowerCase() + '.lua?search=' + text" v-if="text.toLowerCase().indexOf( search.toLowerCase() ) > -1">
 								{{ text }}
 							</a>
 						</li>
 						<!-- UTIL functions -->
 						<div class="categorie"><h1>UTIL</h1></div>
 						<li v-for="text in util">
-							<a href="#" v-if="text.toLowerCase().indexOf( search ) > -1">
+							<a :href="'?file=' + links.util + '?search=' + text" v-if="text.toLowerCase().indexOf( search.toLowerCase() ) > -1">
 								{{ text }}
 							</a>
 						</li>
 						<!-- DRAW functions -->
 						<div class="categorie"><h1>DRAW</h1></div>
 						<li v-for="text in draw">
-							<a href="#" v-if="text.toLowerCase().indexOf( search ) > -1">
+							<a :href="'?file=' + links.draw + '?search=' + text" v-if="text.toLowerCase().indexOf( search.toLowerCase() ) > -1">
 								{{ text }}
 							</a>
 						</li>
 						<!-- COLOR variables -->
 						<div class="categorie"><h1>COLORS</h1></div>
 						<li v-for="el in color">
-							<a href="#" v-if="el.name.toLowerCase().indexOf( search ) > -1" v-bind:style="{ backgroundColor: el.color }">
+							<!-- <a :href="'?file=' + links.color + '?search=' + el.name" v-if="el.name.toLowerCase().indexOf( search.toLowerCase() ) > -1" v-bind:style="{ backgroundColor: el.color }"> -->
+							<a href="#" :style="{ backgroundColor: el.color }">
 								{{ el.name }}
 							</a>
 						</li>

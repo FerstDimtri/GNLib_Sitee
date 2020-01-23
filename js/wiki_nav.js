@@ -1,6 +1,13 @@
 const files_link = "https://api.github.com/repos/Nogitsu/GNLib/contents/"
 const raw_link = "https://raw.githubusercontent.com/Nogitsu/GNLib/master/"
 
+const links = {
+    vgui: "lua/vgui/",
+    util: "lua/gnlib/shared/sh_util.lua",
+    draw: "lua/gnlib/client/cl_draw.lua",
+    color: "lua/gnlib/shared/sh_colors.lua",
+}
+
 function fetch_json( link ) {
     return new Promise( ( res, rej ) => {
         fetch( link )
@@ -50,14 +57,19 @@ const vertical_menu = new Vue( {
     el: ".vertical-menu",
     data: {
         search: "",
-        vgui: [],
+        links: links,
+        /* files_doc: {
+            util: { link: "lua/gnlib/shared/sh_util.lua", el: [] },
+            draw: { link: "lua/gnlib/client/cl_draw.lua", el: [] },
+        }, */
         util: [],
         draw: [],
+        vgui: [],
         color: [],
     },
     created() {
         /* VGUI */
-        fetch_json( files_link + "lua/vgui/" )
+        fetch_json( files_link + links.vgui )
             .then( json => {
                 json.forEach( v => {
                     var name = v.name.slice( 0, 3 ).toUpperCase() + v.name.slice( 3, v.name.lenght ).replace( ".lua", "" )
@@ -66,13 +78,17 @@ const vertical_menu = new Vue( {
             } )
             
         /* UTIL */
-        fetch_documentation_name( raw_link + "lua/gnlib/shared/sh_util.lua", this.util )
+        /* for ( const k in object ) {
+            const v = object[k]
+            fetch_documentation_name( raw_link + v.link, v.el )
+        } */
+        fetch_documentation_name( raw_link + links.util, this.util )
 
         /* DRAW */
-        fetch_documentation_name( raw_link + "lua/gnlib/client/cl_draw.lua", this.draw )
+        fetch_documentation_name( raw_link + links.draw, this.draw )
 
         /* COLOR */
-        get_content( raw_link + "lua/gnlib/shared/sh_colors.lua" )
+        get_content( raw_link + links.color )
             .then( response => {
                 const lines = response.split( "\n" )
                 for ( let i = 0; i < lines.length; i++ ) {
