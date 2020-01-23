@@ -10,15 +10,16 @@ header{
     color: #fff;
 }
 
-ul{
+ul {
     float: right;
     list-style-type: none;
     margin-top: 35px;
     margin-right: 20px;
 }
 
-ul li{
+ul li {
     display: inline-block;
+    margin-left: 5px;
 }
 
 ul li a{

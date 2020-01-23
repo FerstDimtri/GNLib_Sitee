@@ -11,9 +11,12 @@
 		<header>
 			<div class="main">
 				<ul>
-					<li><a href="index.html">Accueil</a></li>
-					<li><a href="wiki.html">Wiki</a></li>
-					<li><a href="https://discord.gg/U425mC">Discord</a></li>
+					<!-- CODE IN js/button_links.js -->
+					<li v-for="v in buttons">
+						<a :href="v.link">
+							{{ v.title }}
+						</a>
+					</li>
 				</ul>
 
 				<div class="title">
@@ -56,28 +59,19 @@
 
 		<div class="staff_body">
 			<div class="containerStaff">
-				<div class="cardStaff">
+				<!-- CODE IN js/list_creators.js -->
+				<div class="cardStaff" v-for="v in staff">
 					<div class="StaffContent">
-						<img class="staff-avatar" width=200 height=200 src="https://avatars3.githubusercontent.com/u/33220603?s=460&v=4">
-						<h2>Guthen</h2>
-						<h3>Lead Dev</h3>
-					</div>
-				</div>
-				<div class="cardStaff">
-					<div class="StaffContent">
-						<img class="staff-avatar" width=200 height=200 src="https://avatars1.githubusercontent.com/u/25884866?s=460&v=4">
-						<h2>Nogitsu</h2>
-						<h3>Lead Dev</h3>
-					</div>
-				</div>
-				<div class="cardStaff">
-					<div class="StaffContent">
-						<img class="staff-avatar" width=200 height=200 src="https://cdn.discordapp.com/avatars/324645432493867008/4398f438e6307fd58f3e5182905d8897.webp?size=256">
-						<h2>Ferst - Dimitri</h2>
-						<h3>Website Creator</h3>
+						<img class="staff-avatar" width=200 height=200 :src="v.image">
+						<h2>{{ v.name }}</h2>
+						<h3>{{ v.role }}</h3>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<script src="https://unpkg.com/vue"></script>
+		<script src="js/button_links.js"></script>
+		<script src="js/list_creators.js"></script>
 	</body>
 </html>
