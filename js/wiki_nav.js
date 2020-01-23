@@ -1,5 +1,5 @@
-var files_link = "https://api.github.com/repos/Nogitsu/GNLib/contents/"
-var raw_link = "https://raw.githubusercontent.com/Nogitsu/GNLib/master/"
+const files_link = "https://api.github.com/repos/Nogitsu/GNLib/contents/"
+const raw_link = "https://raw.githubusercontent.com/Nogitsu/GNLib/master/"
 
 function fetch_json( link ) {
     return new Promise( ( res, rej ) => {
@@ -26,7 +26,7 @@ function get_content( link ) {
 function fetch_documentation_name( link, array ) {
     get_content( link )
         .then( response => {
-            var lines = response.split( "\n" )
+            const lines = response.split( "\n" )
             for ( let i = 0; i < lines.length; i++ ) {
                 const v = lines[i]
                 if ( v.includes( "@title:" ) ) {
@@ -38,7 +38,7 @@ function fetch_documentation_name( link, array ) {
 }
 
 function component_to_hex( c ) {
-    var hex = Number( c ).toString( 16 );
+    const hex = Number( c ).toString( 16 );
     return hex.length == 1 ? "0" + hex : hex;
 }
   
@@ -46,7 +46,7 @@ function rgb_to_hex( r, g, b ) {
     return "#" + component_to_hex( r ) + component_to_hex( g ) + component_to_hex( b );
 }
 
-var vertical_menu = new Vue( {
+const vertical_menu = new Vue( {
     el: ".vertical-menu",
     data: {
         search: "",
@@ -74,7 +74,7 @@ var vertical_menu = new Vue( {
         /* COLOR */
         get_content( raw_link + "lua/gnlib/shared/sh_colors.lua" )
             .then( response => {
-                var lines = response.split( "\n" )
+                const lines = response.split( "\n" )
                 for ( let i = 0; i < lines.length; i++ ) {
                     const v = lines[i]
                     if ( v.includes( "GNLib.Colors." ) ) {

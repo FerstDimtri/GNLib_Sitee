@@ -46,9 +46,46 @@
 					</ul>
 				</div>
 			</div>
+			<div class="right">
+			    <h1 class="title"><center>{{ title }}</center></h1>
+			    
+			    <div class="function" v-if="usage">
+			    	<h2><center>{{ usage }}</center></h2>
+			    </div>
+
+			    <div class="desc" v-if="description">
+			    	<h2>DESCRIPTION :</h2>
+			    	<p>{{ description }}</p>
+			    </div>
+
+			    <div class="arg" v-if="args.length > 0">
+			    	<h2>ARGUMENTS :</h2>
+			    	<p v-for="arg in args">
+						• <b>{{ arg.type }}</b> <u>{{ arg.name }}</u> : {{ arg.prompt }}
+					</p>
+			    </div>
+
+			    <div class="exp" v-if="example.pre_text">
+			    	<h2>EXEMPLE :</h2>
+			    	<div class="code">
+				    	<pre>
+hook.Add( "HUDPaint", "GNLib:DrawRectGradient", function()
+    GNLib.DrawRectGradient( 10, ScrH() - 50, 100, 40, GNLib.Colors.Clouds, GNLib.Colors.Amethyst )
+end )
+						</pre>
+					</div>
+			    </div>
+
+			    <div class="output" v-if="output">
+			    	<h2>SORTIE :</h2>
+
+			    	<img :src="output">
+			    </div>
+			</div>
 		</header>
 
 		<script src="https://unpkg.com/vue"></script>
 		<script src="js/wiki_nav.js"></script>
+		<script src="js/wiki_right.js"></script>
 	</body>
 </html>
