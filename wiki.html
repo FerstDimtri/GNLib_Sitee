@@ -75,16 +75,16 @@
 					</p>
 				</div>
 
-			    <div class="exp" v-if="example.pre_text || example.code || example.output">
+			    <div class="exp" v-if="example.prompt || example.code || example.output">
 					<h2>EXEMPLE :</h2>
-					<p v-if="example.pre_text">{{ example.pre_text }}</p>
+					<p v-if="example.prompt">{{ example.pre_text }}</p>
 
 			    	<div class="code" v-if="example.code">
 				    	<pre>{{ example.code }}</pre>
 					</div>
 
 					<a :href="example.output" v-if="example.output.search( 'https://' ) > -1">
-						<img :src="example.output" alt="example.pre_text">
+						<img :src="example.output" alt="example.prompt">
 					</a>
 					<p v-else-if="example.output"><b>SORTIE :</b> {{ example.output }}</p>
 			    </div>

@@ -22,17 +22,11 @@ const right = new Vue( {
         description: "",
         args: [],
         example: {
-            pre_text: "",
-            code: "print( 'you make me sick' )\nprint( 'Luke, I\'am your father' )",
-            output: "https://cdn.discordapp.com/attachments/638822462431166495/638822480169140226/unknown.png"
+            prompt: "",
+            code: "",
+            output: ""
         },
-        output: [
-            {
-                type: "function",
-                name: "Boloss",
-                prompt: "Result of madness"
-            }
-        ],
+        output: [],
     },
     created() {
         const args = location.href.split( "?" )
@@ -47,20 +41,22 @@ const right = new Vue( {
         search = search.replace( "search=", "" )
 
         console.log( file, search );
+        
         /* SEARCH FOR DOCUMENTATION */
         get_content( raw_link + file )
             .then( response => {
-                const lines = response.split( "\n" )
+                const lines = response.split( "---" )              
+                //const lines = response.split( "\n" )              
 
                 let arg_type, has_found
                 for ( let i = 0; i < lines.length; i++ ) {
                     const v = lines[i]
 
                     //  > Don't continue if this is not a doc comment
-                    if ( v.search( "---" ) < 0 ) {
+                    /* if ( v.search( "---" ) < 0 ) {
                         arg_type = null
                         continue
-                    }
+                    } */
 
                     //  > Look for a param
                     const arg = v.match( /@(\w+)/ )
@@ -76,7 +72,7 @@ const right = new Vue( {
                             continue 
                         }
 
-                        const match = v.match( /---\s+([^\s]+): <\w+> (.+)/ )
+                        const match = v.match( /\s+([^\s]+): <\w+> (.+)/ )
                         const name = match[1]
                         const desc = match[2]
                         if ( !( name == search ) ) continue
@@ -90,18 +86,53 @@ const right = new Vue( {
                     else if ( arg_type == "params" ) {                      
                         if ( !has_found ) continue
 
-                        const match = v.match( /---\s+([^\s]+): <(\w+)> (.+)/ )
+                        const match = v.match( /\s+([^\s]+): <(\w+)> (.+)/ )
                         const name = match[1]
                         const type = match[2]
                         const desc = match[3]
 
                         this.args.push( { type: type, name: name, prompt: desc } )
                     }
+                    //  > Get example
+                    else if ( arg_type == "example" ) {                      
+                        if ( !has_found ) continue
+
+                        const match = v.match( /\s+#([^\s]+): (.+)/ )
+                        const name = match[1]
+                        let desc = match[2]
+                        
+                        if ( !( this.example[name] == null ) ) {
+                            if ( name == "code" ) {
+                                while ( desc.indexOf( "\\n" ) > -1 ) {
+                                    desc = desc.replace( "\\n", "\n" )
+                                }
+                                while ( desc.indexOf( "\\t" ) > -1 ) {
+                                    desc = desc.replace( "\\t", "\t" )
+                                }
+                            }
+
+                            this.example[name] = desc
+                            //console.log( desc );
+                            
+                            //console.log( 'local tab = {}\n\nfor i = 0, 1000000 do\n\ttab[i] = true\nend\n\nlocal _pairs = GNLib.Benchmark( function()\n\tfor k, v in pairs( tab ) do\n\tend\nend, "pairs" )\n\nlocal _ipairs = GNLib.Benchmark( function()\n\tfor i, v in ipairs( tab ) do\n\tend\nend, "ipairs" )\n\nprint( "Fastest is: " .. ( _ipairs < _pairs and "ipairs" or "pairs" ) )' );                           
+                        }
+                    }
+                    //  > Get return
+                    else if ( arg_type == "return" ) {
+                        if ( !has_found ) continue
+
+                        const match = v.match( /\s+([^\s]+): <(\w+)> (.+)/ )
+                        const name = match[1]
+                        const type = match[2]
+                        const desc = match[3]
+
+                        this.output.push( { type: type, name: name, prompt: desc } )
+                    }
                     //  > Get note
                     else if ( arg_type == "note" ) {
                         if ( !has_found ) continue
 
-                        const match = v.match( /---\s+(.+)/ )[1]
+                        const match = v.match( /\s+(.+)/ )[1]
 
                         this.note = match
                     }
