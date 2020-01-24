@@ -19,21 +19,21 @@
 						<!-- VGUIs -->
 						<div class="categorie"><h1>VGUI</h1></div>
 						<li v-for="text in vgui">
-							<a :href="'?file=' + links.vgui + text.toLowerCase() + '.lua?search=' + text" v-if="text.toLowerCase().indexOf( search.toLowerCase() ) > -1">
+							<a :href="'?file=' + links.vgui + text.toLowerCase() + '.lua?search=' + text" v-if="text.toLowerCase().includes( search.toLowerCase() )">
 								{{ text }}
 							</a>
 						</li>
 						<!-- UTIL functions -->
 						<div class="categorie"><h1>UTIL</h1></div>
 						<li v-for="text in util">
-							<a :href="'?file=' + links.util + '?search=' + text" v-if="text.toLowerCase().indexOf( search.toLowerCase() ) > -1">
+							<a :href="'?file=' + links.util + '?search=' + text" v-if="text.toLowerCase().includes( search.toLowerCase() )">
 								{{ text }}
 							</a>
 						</li>
 						<!-- DRAW functions -->
 						<div class="categorie"><h1>DRAW</h1></div>
 						<li v-for="text in draw">
-							<a :href="'?file=' + links.draw + '?search=' + text" v-if="text.toLowerCase().indexOf( search.toLowerCase() ) > -1">
+							<a :href="'?file=' + links.draw + '?search=' + text" v-if="text.toLowerCase().includes( search.toLowerCase() )">
 								{{ text }}
 							</a>
 						</li>
@@ -41,7 +41,7 @@
 						<div class="categorie"><h1>COLORS</h1></div>
 						<li v-for="el in color">
 							<!-- <a :href="'?file=' + links.color + '?search=' + el.name" v-if="el.name.toLowerCase().indexOf( search.toLowerCase() ) > -1" v-bind:style="{ backgroundColor: el.color }"> -->
-							<a href="#" :style="{ backgroundColor: el.color }" v-if="el.name.toLowerCase().indexOf( search.toLowerCase() ) > -1">
+							<a href="#" :style="{ backgroundColor: el.color }" v-if="el.name.toLowerCase().includes( search.toLowerCase() )">
 								{{ el.name }}
 							</a>
 						</li>

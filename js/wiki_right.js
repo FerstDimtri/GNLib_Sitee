@@ -102,13 +102,9 @@ const right = new Vue( {
                         let desc = match[2]
                         
                         if ( !( this.example[name] == null ) ) {
+                            // replace \n and \t
                             if ( name == "code" ) {
-                                while ( desc.indexOf( "\\n" ) > -1 ) {
-                                    desc = desc.replace( "\\n", "\n" )
-                                }
-                                while ( desc.indexOf( "\\t" ) > -1 ) {
-                                    desc = desc.replace( "\\t", "\t" )
-                                }
+                                desc = desc.replace( /\\n/g, "\n" ).replace( /\\t/g, "\t" )
                             }
 
                             this.example[name] = desc

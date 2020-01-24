@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: Titillium Web;
+    text-align: center;
 }
 
 header{
@@ -10,19 +11,19 @@ header{
     color: #fff;
 }
 
-ul {
+.main ul {
     float: right;
     list-style-type: none;
     margin-top: 35px;
     margin-right: 20px;
 }
 
-ul li {
+.main ul li {
     display: inline-block;
     margin-left: 5px;
 }
 
-ul li a{
+.main ul li a{
     text-decoration: none;
     color: #fff;
     padding: 10px 30px;
@@ -30,15 +31,14 @@ ul li a{
     transition: 0.6s ease;
 }
 
-ul li a:hover{
+.main ul li a:hover{
     background-color: #7f8c8d;
 }
 
-ul li.active a{
+.main ul li.active a{
     background-color: #233341;
     color: #fff;  
 }
-
 
 .logo img{
     width: 250px;
@@ -46,7 +46,13 @@ ul li.active a{
     position: absolute;
     top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate( -50%, -50% ) scale( 1 );
+    transition: 0.6s;
+    animation: alpha-show 2s;
+}
+
+.logo img:hover{
+    transform: translate( -50%, -50% ) scale( 1.1 );
 }
 
 .title{
@@ -82,8 +88,8 @@ ul li.active a{
 
 .info{
     background: #ecf0f1;
-    height: 20vh;
     color: #233341;
+    padding: 3vh 0 4vh;
 }
 
 .info h1{
@@ -99,10 +105,27 @@ ul li.active a{
     top: 18%
 }
 
+.info ul li {
+    font-size: 19.5px;
+}
+
+.info li a {
+    color: #34495e;
+    font-weight: bold;
+    text-decoration: underline;
+    transition: .6s;
+}
+
+.info li a:hover {
+    color: #A0A0A0;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 .install{
     background: #2c3e50;
-    height: 50vh;
     color: #ecf0f1;
+    padding: 3vh 0 4vh;
 }
 
 .install h1{
@@ -175,13 +198,24 @@ ul li.active a{
 }
 
 ::-webkit-scrollbar-track {
-    background: #7f8c8d;
+    background: #2c3e50;
 }
  
 ::-webkit-scrollbar-thumb {
-    background: #2c3e50; 
+    background: #233341; 
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: #151E27; 
+}
+
+/* ANIMATIONS */
+/* > alpha-show: Appear animation, play with opacity */
+@keyframes alpha-show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
