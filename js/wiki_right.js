@@ -16,16 +16,23 @@ function get_content( link ) {
 const right = new Vue( {
     el: ".right",
     data: {
-        title: "Not found",
+        title: "",
         usage: "",
-        description: "No description",
+        note: "",
+        description: "",
         args: [],
         example: {
             pre_text: "",
-            code: "",
-            post_text: ""
+            code: "print( 'you make me sick' )\nprint( 'Luke, I\'am your father' )",
+            output: "https://cdn.discordapp.com/attachments/638822462431166495/638822480169140226/unknown.png"
         },
-        output: "",
+        output: [
+            {
+                type: "function",
+                name: "Boloss",
+                prompt: "Result of madness"
+            }
+        ],
     },
     created() {
         const args = location.href.split( "?" )
@@ -48,19 +55,21 @@ const right = new Vue( {
                 let arg_type, has_found
                 for ( let i = 0; i < lines.length; i++ ) {
                     const v = lines[i]
+
+                    //  > Don't continue if this is not a doc comment
                     if ( v.search( "---" ) < 0 ) {
                         arg_type = null
                         continue
                     }
 
-                    //console.log( v);
-                    
+                    //  > Look for a param
                     const arg = v.match( /@(\w+)/ )
                     if ( arg ) {
                         arg_type = arg[1];
                         continue
                     }
 
+                    //  > Get title
                     if ( arg_type == "title" ) {
                         if ( has_found ) { 
                             has_found = false 
@@ -77,6 +86,7 @@ const right = new Vue( {
 
                         has_found = true
                     }
+                    //  > Get params
                     else if ( arg_type == "params" ) {                      
                         if ( !has_found ) continue
 
@@ -87,7 +97,24 @@ const right = new Vue( {
 
                         this.args.push( { type: type, name: name, prompt: desc } )
                     }
+                    //  > Get note
+                    else if ( arg_type == "note" ) {
+                        if ( !has_found ) continue
+
+                        const match = v.match( /---\s+(.+)/ )[1]
+
+                        this.note = match
+                    }
                 } 
+                //  > Make usage (for functions)
+                if ( this.title && this.args ) {
+                    let params = []
+                    this.args.forEach( v => {
+                        params.push( `${v.type} ${v.name}` )
+                    } );
+
+                    this.usage = `${this.title}( ${params.join( ", " )} )`
+                }
             } )
     },
 } )

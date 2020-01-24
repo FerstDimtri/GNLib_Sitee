@@ -54,7 +54,7 @@ function rgb_to_hex( r, g, b ) {
 }
 
 const vertical_menu = new Vue( {
-    el: ".vertical-menu",
+    el: ".main",
     data: {
         search: "",
         links: links,

@@ -13,8 +13,8 @@
 				<div class="logo">
 					<a href="index.html"><center><img src="img/gnlib.png"></center></a> 
 				</div>
+				<input v-model="search" id="mySearch" placeholder="Rechercher..." title="Search a function, variable or VGUI">
 				<div class="vertical-menu">
-					<input v-model="search" id="mySearch" placeholder="Rechercher..." title="Search a function, variable or VGUI">
 					<ul id="myMenu">
 						<!-- VGUIs -->
 						<div class="categorie"><h1>VGUI</h1></div>
@@ -41,7 +41,7 @@
 						<div class="categorie"><h1>COLORS</h1></div>
 						<li v-for="el in color">
 							<!-- <a :href="'?file=' + links.color + '?search=' + el.name" v-if="el.name.toLowerCase().indexOf( search.toLowerCase() ) > -1" v-bind:style="{ backgroundColor: el.color }"> -->
-							<a href="#" :style="{ backgroundColor: el.color }">
+							<a href="#" :style="{ backgroundColor: el.color }" v-if="el.name.toLowerCase().indexOf( search.toLowerCase() ) > -1">
 								{{ el.name }}
 							</a>
 						</li>
@@ -57,31 +57,36 @@
 
 			    <div class="desc" v-if="description">
 			    	<h2>DESCRIPTION :</h2>
-			    	<p>{{ description }}</p>
-			    </div>
-
+					<p>{{ description }}</p>
+					<p v-if="note"><b>NOTE : {{ note }}</b></p>
+				</div>
+				
 			    <div class="arg" v-if="args.length > 0">
-			    	<h2>ARGUMENTS :</h2>
+					<h2>{{ args.length > 1 ? 'ARGUMENTS :' : 'ARGUMENT :' }}</h2>
 			    	<p v-for="arg in args">
 						• <b>{{ arg.type }}</b> <u>{{ arg.name }}</u> : {{ arg.prompt }}
 					</p>
 			    </div>
+				
+				<div class="output" v-if="output.length > 0">
+					<h2>{{ output.length > 1 ? 'SORTIES :' : 'SORTIE :' }}</h2>
+			    	<p v-for="out in output">
+						• <b>{{ out.type }}</b> <u>{{ out.name }}</u> : {{ out.prompt }}
+					</p>
+				</div>
 
-			    <div class="exp" v-if="example.pre_text">
-			    	<h2>EXEMPLE :</h2>
-			    	<div class="code">
-				    	<pre>
-hook.Add( "HUDPaint", "GNLib:DrawRectGradient", function()
-    GNLib.DrawRectGradient( 10, ScrH() - 50, 100, 40, GNLib.Colors.Clouds, GNLib.Colors.Amethyst )
-end )
-						</pre>
+			    <div class="exp" v-if="example.pre_text || example.code || example.output">
+					<h2>EXEMPLE :</h2>
+					<p v-if="example.pre_text">{{ example.pre_text }}</p>
+
+			    	<div class="code" v-if="example.code">
+				    	<pre>{{ example.code }}</pre>
 					</div>
-			    </div>
 
-			    <div class="output" v-if="output">
-			    	<h2>SORTIE :</h2>
-
-			    	<img :src="output">
+					<a :href="example.output" v-if="example.output.search( 'https://' ) > -1">
+						<img :src="example.output" alt="example.pre_text">
+					</a>
+					<p v-else-if="example.output"><b>SORTIE :</b> {{ example.output }}</p>
 			    </div>
 			</div>
 		</header>
