@@ -8,6 +8,19 @@ const links = {
     color: "lua/gnlib/shared/sh_colors.lua",
 }
 
+const vgui_better_name = {
+    gncharbutton: "GNCharButton",
+    gncolorpicker: "GNColorPicker",
+    gncombobox: "GNComboBox",
+    gngroupbox: "GNGroupBox",
+    gniconbutton: "GNIconButton",
+    gnnumentry: "GNNumEntry",
+    gntaglist: "GNTagList",
+    gntextentry: "GNTextEntry",
+    gntogglebutton: "GNToggleButton",
+    gntooltip: "GNToolTip",
+}
+
 function fetch_json( link ) {
     return new Promise( ( res, rej ) => {
         fetch( link )
@@ -72,7 +85,12 @@ const vertical_menu = new Vue( {
         fetch_json( files_link + links.vgui )
             .then( json => {
                 json.forEach( v => {
-                    var name = v.name.slice( 0, 3 ).toUpperCase() + v.name.slice( 3, v.name.lenght ).replace( ".lua", "" )
+                    var name = v.name.replace( ".lua", "" )
+                    if ( vgui_better_name[name] ) {
+                        name = vgui_better_name[name]
+                    }
+                    else name = name.slice( 0, 3 ).toUpperCase() + name.slice( 3, name.lenght )
+
                     this.vgui.push( name )
                 } )
             } )
