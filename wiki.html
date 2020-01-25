@@ -41,10 +41,13 @@
 						<div class="categorie"><h1>COLORS</h1></div>
 						<li v-for="el in color">
 							<!-- <a :href="'?file=' + links.color + '?search=' + el.name" v-if="el.name.toLowerCase().indexOf( search.toLowerCase() ) > -1" v-bind:style="{ backgroundColor: el.color }"> -->
-							<a href="#" :style="{ backgroundColor: el.color }" v-if="el.name.toLowerCase().includes( search.toLowerCase() )">
+							<a href="#" v-if="el.name.toLowerCase().includes( search.toLowerCase() )">
 								{{ el.name }}
+								<span class="color-view" :style="{ backgroundColor: el.color }">&nbsp;</span>
 							</a>
 						</li>
+						<li>&nbsp;</li>
+						<li>&nbsp;</li>
 					</ul>
 				</div>
 			</div>

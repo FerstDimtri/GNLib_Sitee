@@ -68,6 +68,17 @@ header{
 	padding: 10px;
 }
 
+.color-view {
+	border: 1px solid;
+	float: right; 
+	width: 4px;
+	transition: .6s;
+}
+
+.vertical-menu a:hover .color-view {
+	width: 10px;
+}
+
 ::-webkit-scrollbar {
 	width: 10px;
 }
