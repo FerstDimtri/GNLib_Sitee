@@ -144,14 +144,14 @@ header{
 .install li a {
     color: #ecf0f1;
     font-weight: bold;
-    text-decoration: underline;
+    text-decoration: none;
     transition: .6s;
 }
 
 .install li a:hover {
     color: #7f8c8d;
     font-weight: bold;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .staff-avatar {
