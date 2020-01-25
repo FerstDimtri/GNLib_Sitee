@@ -148,7 +148,7 @@ header{
 .staff_body{
     margin: 0;
     padding: 0;
-    min-height: 60vh;
+    min-height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -158,13 +158,13 @@ header{
 .staff_body .containerStaff{
     position: relative;
     display: flex;
-    width: 900px;
+    width: 80%;
     justify-content: space-between;
 }
 
 .staff_body .containerStaff .cardStaff{
     position: relative;
-    width: 280px;
+    width: 230px;
     height: 300px;
     box-sizing: border-box;
     box-shadow: 0 5px 12.5px rgba(0,0,0,0.8);
