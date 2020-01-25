@@ -101,7 +101,7 @@
 				    	<pre>{{ example.code }}</pre>
 					</div>
 
-					<a :href="example.output" v-if="example.output.search( 'https://' ) > -1">
+					<a :href="example.output" target="_blank" v-if="example.output.search( 'https://' ) > -1">
 						<img :src="example.output" alt="example.prompt">
 					</a>
 					<p v-else-if="example.output"><b>SORTIE :</b> {{ example.output }}</p>
