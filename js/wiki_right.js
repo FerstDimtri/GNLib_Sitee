@@ -82,6 +82,8 @@ const right = new Vue( {
                         }
 
                         const match = v.match( /\s+([^\s]+): <\w+> (.+)/ )
+                        if ( match == null ) continue
+
                         const name = match[1]
                         const desc = match[2]
                         if ( !( name == search ) ) continue
@@ -96,6 +98,8 @@ const right = new Vue( {
                         if ( !has_found ) continue
 
                         const match = v.match( /\s+([^\s]+): <(\w+)> (.+)/ )
+                        if ( match == null ) continue
+
                         const name = match[1]
                         const type = match[2]
                         const desc = match[3]
@@ -129,6 +133,8 @@ const right = new Vue( {
                         if ( !has_found ) continue
 
                         const match = v.match( /\s+([^\s]+): <(\w+)> (.+)/ )
+                        if ( match == null ) continue
+                        
                         const name = match[1]
                         const type = match[2]
                         const desc = match[3]
