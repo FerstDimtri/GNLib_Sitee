@@ -6,6 +6,7 @@ const docmaker = new Vue( {
             title: { value: "", is_var: true },
             note: { value: "" },
             params: { value: [], is_var: true },
+            return: { value: [], is_var: true },
             example: { 
                 hyper_text: {
                     prompt: "",

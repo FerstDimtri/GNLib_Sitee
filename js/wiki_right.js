@@ -16,6 +16,7 @@ function get_content( link ) {
 const right = new Vue( {
     el: ".right",
     data: {
+        side: "",
         title: "",
         usage: "",
         note: "",
@@ -40,7 +41,15 @@ const right = new Vue( {
         if ( !search ) return
         search = search.replace( "search=", "" )
 
-        console.log( file, search );
+        if ( file.includes( "shared" ) ) {
+            this.side = "shared"
+        }
+        else if ( file.includes( "client" ) ) {
+            this.side = "client"
+        }
+        else {
+            this.side = "server"
+        }
         
         /* SEARCH FOR DOCUMENTATION */
         get_content( raw_link + file )
@@ -98,6 +107,8 @@ const right = new Vue( {
                         if ( !has_found ) continue
 
                         const match = v.match( /\s+#([^\s]+): (.+)/ )
+                        if ( match == null ) continue
+
                         const name = match[1]
                         let desc = match[2]
                         
