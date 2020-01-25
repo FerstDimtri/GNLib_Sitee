@@ -1,13 +1,6 @@
 const files_link = "https://api.github.com/repos/Nogitsu/GNLib/contents/"
 const raw_link = "https://raw.githubusercontent.com/Nogitsu/GNLib/master/"
 
-const links = {
-    vgui: "lua/vgui/",
-    util: "lua/gnlib/shared/sh_util.lua",
-    draw: "lua/gnlib/client/cl_draw.lua",
-    color: "lua/gnlib/shared/sh_colors.lua",
-}
-
 const vgui_better_name = {
     gncharbutton: "GNCharButton",
     gncolorpicker: "GNColorPicker",
@@ -66,23 +59,49 @@ function rgb_to_hex( r, g, b ) {
     return "#" + component_to_hex( r ) + component_to_hex( g ) + component_to_hex( b );
 }
 
-const vertical_menu = new Vue( {
+const nav = new Vue( {
     el: ".main",
     data: {
         search: "",
-        links: links,
-        /* files_doc: {
-            util: { link: "lua/gnlib/shared/sh_util.lua", el: [] },
-            draw: { link: "lua/gnlib/client/cl_draw.lua", el: [] },
-        }, */
-        util: [],
-        draw: [],
+        links: {
+            vgui: "lua/vgui/",
+            color: "lua/gnlib/shared/sh_colors.lua",
+        },
+        docs: {
+            util: { 
+                link: "lua/gnlib/shared/sh_util.lua", 
+                el: [] 
+            },
+            recursive: {
+                link: "lua/gnlib/shared/sh_recursive.lua",
+                el: [],
+            },
+            iterator: {
+                link: "lua/gnlib/shared/sh_iterator.lua",
+                el: [],
+            },
+            derma: {
+                link: "lua/gnlib/client/cl_derma.lua",
+                el: []
+            },
+            font: {
+                link: "lua/gnlib/client/cl_font.lua",
+                el: [],
+            },
+            draw: { 
+                link: "lua/gnlib/client/cl_draw.lua", 
+                el: [] 
+            },
+        },
         vgui: [],
+        /*util: [],
+        draw: [],
+        iterator: [],*/
         color: [],
     },
     created() {
-        /* VGUI */
-        fetch_json( files_link + links.vgui )
+        //  > VGUI
+        fetch_json( files_link + this.links.vgui )
             .then( json => {
                 json.forEach( v => {
                     var name = v.name.replace( ".lua", "" )
@@ -94,19 +113,9 @@ const vertical_menu = new Vue( {
                     this.vgui.push( name )
                 } )
             } )
-            
-        /* UTIL */
-        /* for ( const k in object ) {
-            const v = object[k]
-            fetch_documentation_name( raw_link + v.link, v.el )
-        } */
-        fetch_documentation_name( raw_link + links.util, this.util )
 
-        /* DRAW */
-        fetch_documentation_name( raw_link + links.draw, this.draw )
-
-        /* COLOR */
-        get_content( raw_link + links.color )
+        //  > Color
+        get_content( raw_link + this.links.color )
             .then( response => {
                 const lines = response.split( "\n" )
                 for ( let i = 0; i < lines.length; i++ ) {
@@ -120,5 +129,11 @@ const vertical_menu = new Vue( {
                     }
                 }
             } )
+
+        //  > Docs
+        for ( const k in this.docs ) {
+            const v = this.docs[k]
+            fetch_documentation_name( raw_link + v.link, this.docs[k].el )
+        }
     }
 } ) 

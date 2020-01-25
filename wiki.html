@@ -24,19 +24,34 @@
 							</a>
 						</li>
 						<!-- UTIL functions -->
-						<div class="categorie"><h1>UTIL</h1></div>
+						<!-- <div class="categorie"><h1>UTIL</h1></div>
 						<li v-for="text in util">
 							<a :href="'?file=' + links.util + '?search=' + text" v-if="text.toLowerCase().includes( search.toLowerCase() )">
 								{{ text }}
 							</a>
-						</li>
+						</li> -->
+						<!-- ITERATOR functions -->
+						<!-- <div class="categorie"><h1>ITERATOR</h1></div>
+						<li v-for="text in iterator">
+							<a :href="'?file=' + links.iterator + '?search=' + text" v-if="text.toLowerCase().includes( search.toLowerCase() )">
+								{{ text }}
+							</a>
+						</li> -->
 						<!-- DRAW functions -->
-						<div class="categorie"><h1>DRAW</h1></div>
+						<!-- <div class="categorie"><h1>DRAW</h1></div>
 						<li v-for="text in draw">
 							<a :href="'?file=' + links.draw + '?search=' + text" v-if="text.toLowerCase().includes( search.toLowerCase() )">
 								{{ text }}
 							</a>
-						</li>
+						</li> -->
+						<div v-for="( v, k ) in docs">
+							<div class="categorie"><h1>{{ k.toUpperCase() }}</h1></div>
+							<li v-for="text in v.el">
+								<a :href="'?file=' + v.link + '?search=' + text" v-if="text.toLowerCase().includes( search.toLowerCase() )">
+									{{ text }}
+								</a>
+							</li>
+						</div>
 						<!-- COLOR variables -->
 						<div class="categorie"><h1>COLORS</h1></div>
 						<li v-for="el in color">
@@ -55,7 +70,7 @@
 			    <h1 class="title"><center>{{ title }}</center></h1>
 			    
 			    <div class="function" v-if="usage">
-			    	<h2><span :class="side" :title="side + ' side'">&nbsp;</span>{{ usage }}</h2>
+			    	<h2><span :class="side" :title="side.substring( 0, 1 ).toUpperCase() + side.substring( 1, side.length ) + ' side'">&nbsp;</span>{{ usage }}</h2>
 			    </div>
 
 			    <div class="desc" v-if="description">
@@ -94,7 +109,11 @@
 			</div>
 		</header>
 
-		<script src="https://unpkg.com/vue"></script>
+		<!-- PRODUCTION LINK -->
+		<script src="https://unpkg.com/vue@2.6.11/dist/vue.min.js"></script>
+		<!-- DEVELOPMENT LINK -->
+		<!-- <script src="https://unpkg.com/vue"></script> -->
+
 		<script src="js/wiki_nav.js"></script>
 		<script src="js/wiki_right.js"></script>
 	</body>
