@@ -141,6 +141,19 @@ header{
     top: 8%;
 }
 
+.install li a {
+    color: #ecf0f1;
+    font-weight: bold;
+    text-decoration: underline;
+    transition: .6s;
+}
+
+.install li a:hover {
+    color: #7f8c8d;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 .staff-avatar {
     border-radius: 50%;
 }
