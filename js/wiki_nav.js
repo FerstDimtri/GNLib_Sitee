@@ -12,6 +12,7 @@ const vgui_better_name = {
     gntextentry: "GNTextEntry",
     gntogglebutton: "GNToggleButton",
     gntooltip: "GNToolTip",
+    gnrichtext: "GNRichText",
 }
 
 function fetch_json( link ) {
