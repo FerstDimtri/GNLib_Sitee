@@ -77,7 +77,8 @@
 			    <div class="desc" v-if="description">
 			    	<h2>DESCRIPTION :</h2>
 					<p>{{ description }}</p>
-					<p v-if="note"><b>NOTE : {{ note }}</b></p>
+					<p v-if="note"><b>Note :</b> {{ note }}</p>
+					<p v-if="parent"><b>Parent :</b> {{ parent }}</p>
 				</div>
 				
 			    <div class="arg" v-if="args.length > 0">
