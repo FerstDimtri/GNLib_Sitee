@@ -13,9 +13,9 @@
 			<div class="main">
 				<ul>
 					<!-- CODE IN js/button_links.js -->
-					<li v-for="v in buttons">
-						<a :href="v.link">
-							{{ v.title }}
+					<li v-for="( v, k ) in buttons">
+						<a :href="v">
+							{{ k }}
 						</a>
 					</li>
 				</ul>
