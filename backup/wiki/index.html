@@ -2,14 +2,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="UTF-8">
-		<meta content="width=device-width, initial-scale=1" name="viewport" />
-		
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>GNLib - Wiki</title>
 		<link rel="stylesheet" type="text/css" href="css/wiki.css">
 		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 	</head>
-	<body style="background: #2e2e2e;">
+	<body>
 		<header>
 			<div class="main">
 				<div class="logo">
@@ -69,48 +68,46 @@
 				</div>
 			</div>
 			<div class="right">
-				<div class="container">
-					<h1 class="title"><center>{{ title }}</center></h1>
-					
-					<div class="function" v-if="usage">
-						<h2><span :class="side" :title="side.substring( 0, 1 ).toUpperCase() + side.substring( 1, side.length ) + ' side'">&nbsp;</span> {{ usage }}</h2>
-					</div>
+			    <h1 class="title"><center>{{ title }}</center></h1>
+			    
+			    <div class="function" v-if="usage">
+			    	<h2><span :class="side" :title="side.substring( 0, 1 ).toUpperCase() + side.substring( 1, side.length ) + ' side'">&nbsp;</span>{{ usage }}</h2>
+			    </div>
 
-					<div class="desc" v-if="description">
-						<h2>DESCRIPTION :</h2>
-						<p>{{ description }}</p>
-						<p v-if="note"><b>Note :</b> {{ note }}</p>
-						<p v-if="parent"><b>Parent :</b> {{ parent }}</p>
-					</div>
-					
-					<div class="arg" v-if="args.length > 0">
-						<h2>{{ args.length > 1 ? 'ARGUMENTS :' : 'ARGUMENT :' }}</h2>
-						<p v-for="arg in args">
-							• <b>{{ arg.type }}</b> <u>{{ arg.name }}</u> : {{ arg.prompt }}
-						</p>
-					</div>
-					
-					<div class="output" v-if="output.length > 0">
-						<h2>{{ output.length > 1 ? 'SORTIES :' : 'SORTIE :' }}</h2>
-						<p v-for="out in output">
-							• <b>{{ out.type }}</b> <u>{{ out.name }}</u> : {{ out.prompt }}
-						</p>
-					</div>
-
-					<div class="exp" v-if="example.prompt || example.code || example.output">
-						<h2>EXEMPLE :</h2>
-						<p v-if="example.prompt">{{ example.prompt }}</p>
-
-						<div class="code" v-if="example.code">
-							<pre>{{ example.code }}</pre>
-						</div>
-
-						<a :href="example.output" target="_blank" v-if="example.output.search( 'https://' ) > -1">
-							<img :src="example.output" alt="example.prompt">
-						</a>
-						<p v-else-if="example.output"><b>SORTIE :</b> {{ example.output }}</p>
-					</div>
+			    <div class="desc" v-if="description">
+			    	<h2>DESCRIPTION :</h2>
+					<p>{{ description }}</p>
+					<p v-if="note"><b>Note :</b> {{ note }}</p>
+					<p v-if="parent"><b>Parent :</b> {{ parent }}</p>
 				</div>
+				
+			    <div class="arg" v-if="args.length > 0">
+					<h2>{{ args.length > 1 ? 'ARGUMENTS :' : 'ARGUMENT :' }}</h2>
+			    	<p v-for="arg in args">
+						• <b>{{ arg.type }}</b> <u>{{ arg.name }}</u> : {{ arg.prompt }}
+					</p>
+			    </div>
+				
+				<div class="output" v-if="output.length > 0">
+					<h2>{{ output.length > 1 ? 'SORTIES :' : 'SORTIE :' }}</h2>
+			    	<p v-for="out in output">
+						• <b>{{ out.type }}</b> <u>{{ out.name }}</u> : {{ out.prompt }}
+					</p>
+				</div>
+
+			    <div class="exp" v-if="example.prompt || example.code || example.output">
+					<h2>EXEMPLE :</h2>
+					<p v-if="example.prompt">{{ example.prompt }}</p>
+
+			    	<div class="code" v-if="example.code">
+				    	<pre>{{ example.code }}</pre>
+					</div>
+
+					<a :href="example.output" target="_blank" v-if="example.output.search( 'https://' ) > -1">
+						<img :src="example.output" alt="example.prompt">
+					</a>
+					<p v-else-if="example.output"><b>SORTIE :</b> {{ example.output }}</p>
+			    </div>
 			</div>
 		</header>
 
