@@ -47,9 +47,9 @@
 						</li> -->
 						<div v-for="( v, k ) in docs">
 							<div class="categorie"><h1>{{ k.toUpperCase() }}</h1></div>
-							<li v-for="text in v.el">
-								<a :href="'?file=' + v.link + '?search=' + text" v-if="text.toLowerCase().includes( search.toLowerCase() )">
-									{{ text }}
+							<li v-for="el in v.el">
+								<a :href="'?file=' + el.link + '?search=' + el.text" v-if="el.text.toLowerCase().includes( search.toLowerCase() )">
+									{{ el.text }}
 								</a>
 							</li>
 						</div>

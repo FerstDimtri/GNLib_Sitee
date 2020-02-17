@@ -20,6 +20,7 @@ const right = new Vue( {
         title: "",
         usage: "",
         note: "",
+        parent: "",
         description: "",
         args: [],
         example: {
@@ -40,6 +41,8 @@ const right = new Vue( {
         let search = args[1]
         if ( !search ) return
         search = search.replace( "search=", "" )
+
+        this.title = search
 
         if ( file.includes( "shared" ) ) {
             this.side = "shared"
@@ -149,9 +152,17 @@ const right = new Vue( {
 
                         this.note = match
                     }
+                    //  > Get parent
+                    else if ( arg_type == "parent" ) {
+                        if ( !has_found ) continue
+
+                        const match = v.match( /\s+(.+)/ )[1]
+
+                        this.parent = match
+                    }
                 } 
                 //  > Make usage (for functions)
-                if ( this.title && this.args ) {
+                if ( this.title && this.args.length > 0 ) {
                     let params = []
                     this.args.forEach( v => {
                         params.push( `${v.type} ${v.name}` )

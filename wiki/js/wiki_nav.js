@@ -45,7 +45,7 @@ function fetch_documentation_name( link, array ) {
                 const v = lines[i]
                 if ( v.includes( "@title:" ) ) {
                     let name = lines[i + 1].match( /\w+.\w+/i )[0] // get next line and get the function name
-                    array.push( name )
+                    array.push( { text: name, link: link } )
                 }
             } 
         } )
@@ -70,7 +70,11 @@ const nav = new Vue( {
         },
         docs: {
             util: { 
-                link: "lua/gnlib/shared/sh_util.lua", 
+                link: [
+                    "lua/gnlib/shared/sh_util.lua",
+                    "lua/gnlib/client/cl_util.lua",
+                    "lua/gnlib/server/sv_util.lua",
+                ], 
                 el: [] 
             },
             recursive: {
@@ -134,7 +138,15 @@ const nav = new Vue( {
         //  > Docs
         for ( const k in this.docs ) {
             const v = this.docs[k]
-            fetch_documentation_name( raw_link + v.link, this.docs[k].el )
+
+            if ( Array.isArray( v.link ) ) {
+                v.link.forEach( link => {
+                    fetch_documentation_name( raw_link + link, this.docs[k].el )
+                } )
+            }
+            else {
+                fetch_documentation_name( raw_link + v.link, this.docs[k].el )
+            }
         }
     }
 } ) 
