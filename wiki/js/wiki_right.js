@@ -55,7 +55,7 @@ const right = new Vue( {
         }
         
         /* SEARCH FOR DOCUMENTATION */
-        get_content( raw_link + file )
+        get_content( file )
             .then( response => {
                 const lines = response.split( "---" )              
                 //const lines = response.split( "\n" )              
