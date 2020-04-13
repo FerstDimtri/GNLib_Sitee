@@ -165,11 +165,10 @@ header{
 }
 
 .right .exp .code{
-	max-width: 80%;
+	max-width: 70%;
 	margin-left: 30px;
 	margin-top: 0.5%;
 	display: block;
-	background: #34495e;
 	border-radius: 8px;
 }
 
@@ -178,6 +177,11 @@ header{
 	font-size: 15px;
 	padding: 9px 15px 9px 15px;
 	white-space: pre-wrap;
+	/* Prettyprint */
+	border: none;
+	width: 100%;
+	margin: auto;
+	background-color: #34495e;
 }
 
 .right .exp img{
@@ -214,4 +218,21 @@ header{
 
 .right .shared {
 	background-image: linear-gradient( 45deg, rgb( 204, 109, 0 ) 0%, rgb( 204, 109, 0 ) 50%, rgb( 0, 109, 204 ) 51%, rgb( 0, 109, 204 ) 100% );
+}
+
+/* Prettyprint Colors */
+.kwd {
+	color: #89deff !important;
+}
+
+.lit {
+	color: #f78c6c !important;
+}
+
+.str {
+	color: #c3e88d !important;
+}
+
+.pun, .pln {
+	color: #eaeef6 !important;
 }
