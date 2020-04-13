@@ -29,6 +29,7 @@ const right = new Vue( {
             output: ""
         },
         output: [],
+        is_vgui: false,
     },
     created() {
         const args = location.href.split( "?" )
@@ -44,10 +45,11 @@ const right = new Vue( {
 
         this.title = search
 
+        this.is_vgui = file.includes( "vgui" )
         if ( file.includes( "shared" ) ) {
             this.side = "shared"
         }
-        else if ( file.includes( "client" ) ) {
+        else if ( file.includes( "client" ) || this.is_vgui ) {
             this.side = "client"
         }
         else {
@@ -100,7 +102,7 @@ const right = new Vue( {
                     else if ( arg_type == "params" ) {                      
                         if ( !has_found ) continue
 
-                        const match = v.match( /\s+([^\s]+): <(\w+)> (.+)/ )
+                        const match = v.match( /\s+(.+): <(\w+)> (.+)/ )
                         if ( match == null ) continue
 
                         const name = match[1]
@@ -168,7 +170,7 @@ const right = new Vue( {
                         params.push( `${v.type} ${v.name}` )
                     } );
 
-                    this.usage = `${this.title}( ${params.join( ", " )} )`
+                    this.usage = this.is_vgui ? search : `${this.title}( ${params.join( ", " )} )`
                 }
             } )
     },

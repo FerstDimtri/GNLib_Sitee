@@ -118,6 +118,8 @@ const nav = new Vue( {
                     this.vgui.push( name )
                 } )
             } )
+        //  > Get good path (clicking in nav)
+        this.links.vgui = raw_link + this.links.vgui
 
         //  > Color
         get_content( raw_link + this.links.color )

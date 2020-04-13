@@ -24,27 +24,7 @@
 								{{ text }}
 							</a>
 						</li>
-						<!-- UTIL functions -->
-						<!-- <div class="categorie"><h1>UTIL</h1></div>
-						<li v-for="text in util">
-							<a :href="'?file=' + links.util + '?search=' + text" v-if="text.toLowerCase().includes( search.toLowerCase() )">
-								{{ text }}
-							</a>
-						</li> -->
-						<!-- ITERATOR functions -->
-						<!-- <div class="categorie"><h1>ITERATOR</h1></div>
-						<li v-for="text in iterator">
-							<a :href="'?file=' + links.iterator + '?search=' + text" v-if="text.toLowerCase().includes( search.toLowerCase() )">
-								{{ text }}
-							</a>
-						</li> -->
-						<!-- DRAW functions -->
-						<!-- <div class="categorie"><h1>DRAW</h1></div>
-						<li v-for="text in draw">
-							<a :href="'?file=' + links.draw + '?search=' + text" v-if="text.toLowerCase().includes( search.toLowerCase() )">
-								{{ text }}
-							</a>
-						</li> -->
+						<!-- DOCS -->
 						<div v-for="( v, k ) in docs">
 							<div class="categorie"><h1>{{ k.toUpperCase() }}</h1></div>
 							<li v-for="el in v.el">
@@ -82,7 +62,7 @@
 				</div>
 				
 			    <div class="arg" v-if="args.length > 0">
-					<h2>{{ args.length > 1 ? 'ARGUMENTS :' : 'ARGUMENT :' }}</h2>
+					<h2>{{ is_vgui ? "FUNCTIONS :" : ( args.length > 1 ? 'ARGUMENTS :' : 'ARGUMENT :' ) }}</h2>
 			    	<p v-for="arg in args">
 						• <b>{{ arg.type }}</b> <u>{{ arg.name }}</u> : {{ arg.prompt }}
 					</p>
