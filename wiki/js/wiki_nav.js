@@ -1,5 +1,5 @@
-const files_link = "https://api.github.com/repos/Nogitsu/GNLib/contents/"
-const raw_link = "https://raw.githubusercontent.com/Nogitsu/GNLib/master/"
+const files_link = "https://api.github.com/repos/Nogitsu/GNLib/contents/lua/"
+const raw_link = "https://raw.githubusercontent.com/Nogitsu/GNLib/master/lua/"
 
 const vgui_better_name = {
     gncharbutton: "GNCharButton",
@@ -38,7 +38,7 @@ function get_content( link ) {
 }
 
 function fetch_documentation_name( link, array ) {
-    get_content( link )
+    get_content( raw_link + link )
         .then( response => {
             const lines = response.split( "\n" )
             for ( let i = 0; i < lines.length; i++ ) {
@@ -65,38 +65,42 @@ const nav = new Vue( {
     data: {
         search: "",
         links: {
-            vgui: "lua/vgui/",
-            color: "lua/gnlib/shared/sh_colors.lua",
+            vgui: "vgui/",
+            color: "gnlib/shared/sh_colors.lua",
         },
         docs: {
             util: { 
                 link: [
-                    "lua/gnlib/shared/sh_util.lua",
-                    "lua/gnlib/client/cl_util.lua",
-                    "lua/gnlib/server/sv_util.lua",
+                    "gnlib/shared/sh_util.lua",
+                    "gnlib/client/cl_util.lua",
+                    "gnlib/server/sv_util.lua",
                 ], 
                 el: [] 
             },
             recursive: {
-                link: "lua/gnlib/shared/sh_recursive.lua",
+                link: "gnlib/shared/sh_recursive.lua",
                 el: [],
             },
             iterator: {
-                link: "lua/gnlib/shared/sh_iterator.lua",
+                link: "gnlib/shared/sh_iterator.lua",
                 el: [],
             },
             derma: {
-                link: "lua/gnlib/client/cl_derma.lua",
+                link: "gnlib/client/cl_derma.lua",
                 el: []
             },
             font: {
-                link: "lua/gnlib/client/cl_font.lua",
+                link: "gnlib/client/cl_font.lua",
                 el: [],
             },
             draw: { 
-                link: "lua/gnlib/client/cl_draw.lua", 
+                link: "gnlib/client/cl_draw.lua", 
                 el: [] 
             },
+            "try-catch": {
+                link: "gnlib/shared/sh_try_catch.lua",
+                el: [],
+            }
         },
         vgui: [],
         /*util: [],
@@ -108,6 +112,7 @@ const nav = new Vue( {
         //  > VGUI
         fetch_json( files_link + this.links.vgui )
             .then( json => {
+                if ( json.constructor == Object ) return console.error( "Exceeded API rate limit!" )
                 json.forEach( v => {
                     var name = v.name.replace( ".lua", "" )
                     if ( vgui_better_name[name] ) {
@@ -118,6 +123,8 @@ const nav = new Vue( {
                     this.vgui.push( name )
                 } )
             } )
+        //  > Get good path (clicking in nav)
+        this.links.vgui = this.links.vgui
 
         //  > Color
         get_content( raw_link + this.links.color )
@@ -141,11 +148,11 @@ const nav = new Vue( {
 
             if ( Array.isArray( v.link ) ) {
                 v.link.forEach( link => {
-                    fetch_documentation_name( raw_link + link, this.docs[k].el )
+                    fetch_documentation_name( link, this.docs[k].el )
                 } )
             }
             else {
-                fetch_documentation_name( raw_link + v.link, this.docs[k].el )
+                fetch_documentation_name( v.link, this.docs[k].el )
             }
         }
     }

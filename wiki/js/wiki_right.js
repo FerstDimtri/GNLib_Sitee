@@ -1,3 +1,6 @@
+const repo_link = "https://github.com/Nogitsu/GNLib/tree/master/lua/"
+//const raw_link = "https://raw.githubusercontent.com/Nogitsu/GNLib/master/lua/"
+
 function get_content( link ) {
     return new Promise( ( res, rej ) => {
         var xhr = new XMLHttpRequest()
@@ -29,6 +32,7 @@ const right = new Vue( {
             output: ""
         },
         output: [],
+        is_vgui: false,
     },
     created() {
         const args = location.href.split( "?" )
@@ -44,10 +48,11 @@ const right = new Vue( {
 
         this.title = search
 
+        this.is_vgui = file.includes( "vgui" )
         if ( file.includes( "shared" ) ) {
             this.side = "shared"
         }
-        else if ( file.includes( "client" ) ) {
+        else if ( file.includes( "client" ) || this.is_vgui ) {
             this.side = "client"
         }
         else {
@@ -57,12 +62,13 @@ const right = new Vue( {
         /* SEARCH FOR DOCUMENTATION */
         get_content( raw_link + file )
             .then( response => {
-                const lines = response.split( "---" )              
+                const lines = response.split( "\n" )              
                 //const lines = response.split( "\n" )              
 
                 let arg_type, has_found
                 for ( let i = 0; i < lines.length; i++ ) {
                     const v = lines[i]
+                    if ( !v.startsWith( "---" ) ) continue;
 
                     //  > Don't continue if this is not a doc comment
                     /* if ( v.search( "---" ) < 0 ) {
@@ -93,6 +99,7 @@ const right = new Vue( {
 
                         this.title = name
                         this.description = desc
+                        this.source_link = repo_link + file + ( this.is_vgui ? "" : "#L" + i )
 
                         has_found = true
                     }
@@ -100,7 +107,7 @@ const right = new Vue( {
                     else if ( arg_type == "params" ) {                      
                         if ( !has_found ) continue
 
-                        const match = v.match( /\s+([^\s]+): <(\w+)> (.+)/ )
+                        const match = v.match( /\s+(.+): <(\w+)> (.+)/ )
                         if ( match == null ) continue
 
                         const name = match[1]
@@ -168,7 +175,7 @@ const right = new Vue( {
                         params.push( `${v.type} ${v.name}` )
                     } );
 
-                    this.usage = `${this.title}( ${params.join( ", " )} )`
+                    this.usage = this.is_vgui ? search : `${this.title}( ${params.join( ", " )} )`
                 }
             } )
     },

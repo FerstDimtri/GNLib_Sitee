@@ -103,45 +103,38 @@ header{
 }
 
 .right {
-	background: #2e2e2e;
 	width: 100%;
 	margin-left: 30vh;
 }
 
-.right .container {
-	padding: 60px;
-}
-
 .right h1{
 	font-size: 70px;
-	color: white;
-	text-shadow: 0 2px 9px #000000a8;
+	color: #2c3e50;
+	text-shadow: 5px 5px 5px #7f8c8d;
 }
 
 .right h2{
-	color: white;
+	color: #2c3e50;
 	font-weight: 150px;
 	padding-top: 10px;
 	margin-left: 15px;
 }
 
 .right p{
-	color: white;
+	color: #2c3e50;
 	font-weight: 10px;
 	padding-top: 10px;
 	margin-left: 30px;
 }
 
 .right .function{
-	display: flex;
-	justify-content: start;
-	width: 100%;
-	height: 64px;
-	background: #415870;
+	width: 70%;
+	height: 7.5%;
+	margin-left: 15%;
+	margin-top: 1%;
+	display: block;
+	background: #34495e;
 	border-radius: 8px;
-	padding-bottom: 8px;
-	overflow-x: auto;
-	white-space: pre;
 }
 
 .right .function h2{
@@ -150,13 +143,25 @@ header{
 	font-weight: 10;
 }
 
+.right .function .icon {
+	color: white;
+	float: right;
+	width: 2rem;
+	margin-right: 16px;
+	margin-top: 3px;
+}
+
+.right .function .icon:hover {
+	filter: opacity( 75% );
+}
+
 .right .desc{
+	filter: none;
 	display: block;
 	width: 100%;
 	margin-top: 30px;
-	background: #415870;
+	background: #bdc3c7;
 	padding-bottom: 15px;
-	border-radius: 8px;
 }
 
 .right .arg{
@@ -169,16 +174,14 @@ header{
 	display: block;
 	width: 100%;
 	padding-bottom: 20px;
-	background: #415870;
-	border-radius: 8px;
+	background: #bdc3c7;
 }
 
 .right .exp .code{
-	max-width: 80%;
+	max-width: 70%;
 	margin-left: 30px;
 	margin-top: 0.5%;
 	display: block;
-	background: #34495e;
 	border-radius: 8px;
 }
 
@@ -187,6 +190,11 @@ header{
 	font-size: 15px;
 	padding: 9px 15px 9px 15px;
 	white-space: pre-wrap;
+	/* Prettyprint */
+	border: none;
+	width: 100%;
+	margin: auto;
+	background-color: #34495e;
 }
 
 .right .exp img{
@@ -200,9 +208,7 @@ header{
 	display: block;
 	width: 100%;
 	padding-bottom: 15px;
-	background: #415870;
-	border-radius: 8px;
-	margin-bottom: 15px;
+	background: #bdc3c7;
 }
 
 .right .shared, .right .server, .right .client {
@@ -227,12 +233,19 @@ header{
 	background-image: linear-gradient( 45deg, rgb( 204, 109, 0 ) 0%, rgb( 204, 109, 0 ) 50%, rgb( 0, 109, 204 ) 51%, rgb( 0, 109, 204 ) 100% );
 }
 
-@media screen and (max-width: 600px) {
-    .main {
-		position: relative;
-		height: 100vh;
-	}
-	.right {
-		margin-left: 0;
-	}
+/* Prettyprint Colors */
+.kwd {
+	color: #89deff !important;
+}
+
+.lit {
+	color: #f78c6c !important;
+}
+
+.str {
+	color: #c3e88d !important;
+}
+
+.pun, .pln {
+	color: #eaeef6 !important;
 }

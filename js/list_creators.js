@@ -16,13 +16,7 @@ const list_creators = new Vue( {
             {
                 name: "Ferst- Dimitri",
                 role: "Website Creator",
-                image: "https://cdn.discordapp.com/avatars/324645432493867008/4398f438e6307fd58f3e5182905d8897.webp?size=256",
-            },
-            {
-                name: "Wabel",
-                role: "Website Creator",
-                image: "https://cdn.discordapp.com/avatars/307531336388968458/5bed5624c8d7527527ea7b0c07ba6ea7.webp?size=256",
-                link: "https://discord.gg/zMxYzg7",
+                image: "https://cdn.discordapp.com/avatars/324645432493867008/e35433c41ef8a50bdbf7ac22c159abf9.png?size=256",
             },
             {
                 name: "Fleoxi",
@@ -32,8 +26,7 @@ const list_creators = new Vue( {
             {
                 name: "GCA",
                 role: "Sponsor",
-                image: "https://cdn.discordapp.com/icons/223070469148901376/f184858bafe8e8cc328e613944f26c5b.png?size=256",
-                link: "https://discord.gg/gca"
+                image: "https://cdn.discordapp.com/icons/223070469148901376/a_3cdb53884856316a92929e60eb164dc4.webp?size=256"
             }
         ]
     }
